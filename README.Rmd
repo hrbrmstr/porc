@@ -59,14 +59,16 @@ Let's slurp in all the [Emerging Threats](https://rules.emergingthreats.net/) Sn
 
 Grabbed & unpacked from: <https://rules.emergingthreats.net/open/snort-edge/emerging.rules.tar.gz>.
 
-```{r message=FALSE, warning=FALSE, error=FALSE}
+```{r message=FALSE, warning=FALSE, error=FALSE, cache=TRUE}
 list.files("rules/emerging-rules", "\\.rules$", full.names=TRUE) %>% 
   map_df(~{
     cat(crayon::green(.x), "\n", sep="")
     x <- read_rules(.x)
     if (!is.null(x)) mutate(x, fil = .x)
   }) %>% as_rule_df()-> xdf
+```
 
+```{r}
 glimpse(xdf)
 
 xdf
@@ -82,3 +84,7 @@ unnest(xdf) %>%
   mutate(value = sub("^url,", "", value)) %>% 
   count(value, sort=TRUE)
 ```
+
+## Code of Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
