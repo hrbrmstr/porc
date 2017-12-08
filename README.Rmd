@@ -1,0 +1,84 @@
+---
+output: rmarkdown::github_document
+---
+![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
+
+# porc
+
+Tools to Work with 'Snort' Rules, Logs and Data
+
+## Description
+
+'Snort' is an open source intrusion prevention system capable of real-time traffic analysis and packet logging. Tools are provided to work with 'Snort' rulesets, logs and other data associated with the platform. More information on 'Snort' can be found at <https://www.snort.org/>.
+
+## What's Inside The Tin
+
+The following functions are implemented:
+
+- `read_rules`:	Parse in a file of snort rules into a data frame
+- `rule_vars`:	Extract all the '$'-named variables from Snort rules
+- `as_rule_df`:	Helper to class a Snort rules data frame properly
+
+## Installation
+
+```{r eval=FALSE}
+devtools::install_github("hrbrmstr/porc")
+```
+
+```{r message=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+options(width=120)
+```
+
+## Usage
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+library(porc)
+library(tidyverse)
+
+# current verison
+packageVersion("porc")
+```
+
+## Basic rule reading
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+rules <- read_rules(system.file("extdata", "emerging-telnet.rules", package="porc"))
+
+glimpse(rules)
+
+rule_vars(rules)
+
+glimpse(rules$options[[1]])
+
+rules$options[[1]]
+```
+
+## A slightly bigger example
+
+Let's slurp in all the [Emerging Threats](https://rules.emergingthreats.net/) Snort feed rules.
+
+Grabbed & unpacked from: <https://rules.emergingthreats.net/open/snort-edge/emerging.rules.tar.gz>.
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+list.files("rules/emerging-rules", "\\.rules$", full.names=TRUE) %>% 
+  map_df(~{
+    cat(crayon::green(.x), "\n", sep="")
+    x <- read_rules(.x)
+    if (!is.null(x)) mutate(x, fil = .x)
+  }) %>% as_rule_df()-> xdf
+
+glimpse(xdf)
+
+xdf
+```
+
+What are the most referenced URLs in Emerging Threats feed?
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+unnest(xdf) %>% 
+  filter(option == "reference") %>% 
+  filter(grepl("^url", value)) %>% 
+  select(value) %>% 
+  mutate(value = sub("^url,", "", value)) %>% 
+  count(value, sort=TRUE)
+```
