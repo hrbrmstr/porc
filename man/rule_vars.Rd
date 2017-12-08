@@ -12,3 +12,10 @@ rule_vars(rules)
 \description{
 Extract all the `$`-named variables from Snort rules
 }
+\examples{
+rules <- read_rules(
+  system.file("extdata", "emerging-telnet.rules", package="porc")
+)
+
+rule_vars(rules)
+}

@@ -24,3 +24,8 @@ file but commented out. This makes it easy to filter on in-use rules.\cr
 \cr
 The \code{options} column can be unnested with \code{tidyr::unnest()}.
 }
+\examples{
+rules <- read_rules(
+  system.file("extdata", "emerging-telnet.rules", package="porc")
+)
+}

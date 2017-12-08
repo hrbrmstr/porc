@@ -9,4 +9,5 @@
 #' @docType package
 #' @author Bob Rudis (bob@@rud.is)
 #' @import stringi
+#' @importFrom stats complete.cases setNames
 NULL

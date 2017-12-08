@@ -15,6 +15,10 @@
 #' @param path path to snort rules file
 #' @return data frame
 #' @export
+#' @examples
+#' rules <- read_rules(
+#'   system.file("extdata", "emerging-telnet.rules", package="porc")
+#' )
 read_rules <- function(path) {
 
   path <- normalizePath(path.expand(path))

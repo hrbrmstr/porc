@@ -1,5 +1,11 @@
 
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
+[![Travis-CI Build
+Status](https://travis-ci.org/hrbrmstr/porc.svg?branch=master)](https://travis-ci.org/hrbrmstr/porc)
+[![Coverage
+Status](https://img.shields.io/codecov/c/github/hrbrmstr/porc/master.svg)](https://codecov.io/github/hrbrmstr/porc?branch=master)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/hrbrmstr/porc?branch=master&svg=true)](https://ci.appveyor.com/project/hrbrmstr/porc)
 
 # porc
 

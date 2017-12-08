@@ -6,6 +6,9 @@
 \usage{
 as_rule_df(rules)
 }
+\arguments{
+\item{rules}{a Snort rules data frame read in with [read_rules()].}
+}
 \description{
 Helper to class a Snort rules data frame properly
 }

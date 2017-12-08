@@ -3,6 +3,7 @@
 ^\.travis\.yml$
 ^README\.*Rmd$
 ^README\.*html$
+^README\.cache$
 ^NOTES\.*Rmd$
 ^NOTES\.*html$
 ^\.codecov\.yml$
@@ -10,3 +11,5 @@
 ^doc$
 ^rules$
 ^CONDUCT\.md$
+^codecov\.yml$
+^appveyor\.yml$

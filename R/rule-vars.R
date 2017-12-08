@@ -2,6 +2,12 @@
 #'
 #' @param rules a Snort rules data frame read in with [read_rules()].
 #' @export
+#' @examples
+#' rules <- read_rules(
+#'   system.file("extdata", "emerging-telnet.rules", package="porc")
+#' )
+#'
+#' rule_vars(rules)
 rule_vars <- function(rules) {
 
   if (!inherits(rules, "snort_rule_df")) stop("Not a Snort rules data frame", call.=FALSE)
