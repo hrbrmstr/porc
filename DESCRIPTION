@@ -1,7 +1,7 @@
 Package: porc
 Type: Package
 Title: Tools to Work with 'Snort' Rules, Logs and Data
-Version: 0.1.0
+Version: 0.1.1
 Date: 2017-12-08
 Authors@R: c(
     person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
@@ -23,5 +23,7 @@ Depends:
     R (>= 3.2.0)
 Imports:
     stringi,
+    purrr,
+    dplyr,
     stats
 RoxygenNote: 6.0.1

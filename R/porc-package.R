@@ -9,5 +9,7 @@
 #' @docType package
 #' @author Bob Rudis (bob@@rud.is)
 #' @import stringi
+#' @importFrom purrr flatten_df map map_df
+#' @importFrom dplyr bind_rows data_Frame
 #' @importFrom stats complete.cases setNames
 NULL

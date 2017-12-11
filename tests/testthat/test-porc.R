@@ -17,3 +17,14 @@ test_that("we can read rules", {
   expect_equal(rule_vars(rules), c("$EXTERNAL_NET", "$HOME_NET", "$TELNET_SERVERS"))
 
 })
+
+context("rule_vars() functions properly")
+test_that("we can read rules", {
+
+  evt <- read_extended(system.file("extdata", "multi-record-event-x2.log", package="porc"))
+
+  expect_equal(dim(evt), c(34L, 32L))
+
+})
+
+

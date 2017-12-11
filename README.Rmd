@@ -1,5 +1,7 @@
 ---
 output: rmarkdown::github_document
+editor_options: 
+  chunk_output_type: console
 ---
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
 [![Travis-CI Build Status](https://travis-ci.org/hrbrmstr/porc.svg?branch=master)](https://travis-ci.org/hrbrmstr/porc)
@@ -19,6 +21,7 @@ Tools to Work with 'Snort' Rules, Logs and Data
 The following functions are implemented:
 
 - `read_rules`:	Parse in a file of snort rules into a data frame
+- `read_extended`:	Read a Snort "extended v2" log into a data frame
 - `rule_vars`:	Extract all the '$'-named variables from Snort rules
 - `as_rule_df`:	Helper to class a Snort rules data frame properly
 
@@ -86,6 +89,14 @@ unnest(xdf) %>%
   select(value) %>% 
   mutate(value = sub("^url,", "", value)) %>% 
   count(value, sort=TRUE)
+```
+
+## Extended v2 Reading
+
+```{r}
+evt <- read_extended(system.file("extdata", "multi-record-event-x2.log", package="porc"))
+
+dplyr::glimpse(evt)
 ```
 
 ## Code of Conduct
