@@ -9,7 +9,11 @@
 #' @docType package
 #' @author Bob Rudis (bob@@rud.is)
 #' @import stringi
+#' @import httr
+#' @importFrom readr read_lines
+#' @importFrom rvest html_attr html_node html_nodes html_text
 #' @importFrom purrr flatten_df map map_df
-#' @importFrom dplyr bind_rows data_Frame
+#' @importFrom dplyr bind_rows data_frame
 #' @importFrom stats complete.cases setNames
+#' @importFrom utils packageVersion
 NULL

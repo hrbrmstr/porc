@@ -19,7 +19,7 @@ test_that("we can read rules", {
 })
 
 context("rule_vars() functions properly")
-test_that("we can read rules", {
+test_that("we can read extended v2 logs", {
 
   evt <- read_extended(system.file("extdata", "multi-record-event-x2.log", package="porc"))
 

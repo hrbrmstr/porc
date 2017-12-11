@@ -13,3 +13,4 @@
 ^CONDUCT\.md$
 ^codecov\.yml$
 ^appveyor\.yml$
+^notes\.md$

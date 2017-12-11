@@ -24,7 +24,8 @@ read_rules <- function(path) {
   path <- normalizePath(path.expand(path))
   if (!file.exists(path)) stop("File not found", call.=FALSE)
 
-  l <- stri_read_lines(path)
+  l <- readr::read_lines(path)
+  l <- suppressWarings(stri_enc_toutf8(l, is_unknown_8bit = TRUE, validate = TRUE))
   l <- stri_trim_both(l)
   l <- Filter(not_blank, l)
 

@@ -25,5 +25,8 @@ Imports:
     stringi,
     purrr,
     dplyr,
-    stats
+    stats,
+    utils,
+    httr,
+    rvest
 RoxygenNote: 6.0.1
