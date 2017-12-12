@@ -23,6 +23,9 @@ platform. More information on ‘Snort’ can be found at
 
 The following functions are implemented:
 
+  - `download_community_rules`: Download Snort community rules
+  - `download_subscription_rules`: Download Snort subscription rules
+  - `expand_port_ranges`: Expand a Snort port description
   - `read_rules`: Parse in a file of snort rules into a data frame
   - `read_extended`: Read a Snort “extended v2” log into a data frame
   - `rule_vars`: Extract all the ‘$’-named variables from Snort rules
@@ -44,7 +47,7 @@ library(tidyverse)
 packageVersion("porc")
 ```
 
-    ## [1] '0.1.0'
+    ## [1] '0.1.1'
 
 ## Basic rule reading
 
@@ -270,6 +273,35 @@ dplyr::glimpse(evt)
     ## $ packet_second       <int> NA, NA, 964798804, 964798804, 964798804, 964798804, 964798804, 964798804, 964798804, 96...
     ## $ packet_microsecond  <int> NA, NA, 267362, 276118, 279940, 365865, 374238, 382123, 390039, 482792, 490652, 497184,...
     ## $ link_type           <int> NA, NA, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, NA, NA, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
+
+## Expanding Snort Port Ranges
+
+``` r
+rng_ex <- c("25", "$HTTP_PORTS", "1024:", ":1024", "1:1024", "any")
+rng <- expand_port_ranges(rng_ex)
+
+str(
+  setNames(
+    list(
+      rng[[1]],
+      rng[[2]],
+      range(as.numeric(rng[[3]])),
+      range(as.numeric(rng[[4]])),
+      range(as.numeric(rng[[5]])),
+      rng[[6]]
+    ),
+    rng_ex
+  )
+)
+```
+
+    ## List of 6
+    ##  $ 25         : chr "25"
+    ##  $ $HTTP_PORTS: chr "$HTTP_PORTS"
+    ##  $ 1024:      : num [1:2] 1024 65535
+    ##  $ :1024      : num [1:2] 1 1024
+    ##  $ 1:1024     : num [1:2] 1 1024
+    ##  $ any        : chr "any"
 
 ## Code of Conduct
 

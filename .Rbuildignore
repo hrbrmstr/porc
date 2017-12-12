@@ -14,3 +14,4 @@
 ^codecov\.yml$
 ^appveyor\.yml$
 ^notes\.md$
+^README_cache$

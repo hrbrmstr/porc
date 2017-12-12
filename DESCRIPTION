@@ -28,5 +28,6 @@ Imports:
     stats,
     utils,
     httr,
-    rvest
+    rvest,
+    ore
 RoxygenNote: 6.0.1
